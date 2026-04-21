@@ -21,7 +21,7 @@ import i15 from "./assets/15.jpeg";
 import i16 from "./assets/16.jpeg";
 import i17 from "./assets/17.jpeg";
 import BD from "./assets/bd.png";
-import p from "../public/Muhammad_sameer_abbasi.pdf";
+import p from "../public/Muhammad_Sameer_Abbasi.pdf";
 export default function App() {
   const [selectedProject, setSelectedProject] = useState(null);
   const [typedText, setTypedText] = useState("");
@@ -193,7 +193,7 @@ export default function App() {
             </div>
             <div className="flex flex-wrap gap-5 justify-center lg:justify-start">
               <a
-                href="../public/Muhammad_sameer_abbasi.pdf" // Path to your PDF
+                href="/Muhammad_Sameer_Abbasi.pdf" // Path to your PDF
                 download="Muhammad_Sameer_Abbasi_CV.pdf" // Name when downloading
                 className="px-10 py-4 bg-gradient-to-r from-[#38bdf8] to-[#818cf8] hover:from-[#22d3ee] hover:to-[#a78bfa]
                text-black font-bold text-lg rounded-2xl transition-all duration-300 
