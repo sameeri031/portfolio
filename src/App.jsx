@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import "./App.css"; // CSS file import karna na bhoolein
 import heroImg from "./assets/hero.png";
@@ -21,10 +21,152 @@ import i15 from "./assets/15.jpeg";
 import i16 from "./assets/16.jpeg";
 import i17 from "./assets/17.jpeg";
 import BD from "./assets/bd.png";
+import i20 from "./assets/20.jpg";
+import i21 from "./assets/21.jpg";
+import i22 from "./assets/22.jpg";
+import i23 from "./assets/23.jpg";
+import i24 from "./assets/24.jpg";
+import i25 from "./assets/25.jpg";
+import i26 from "./assets/26.jpg";
+import i27 from "./assets/27.jpg";
+import i28 from "./assets/28.jpg";
+import i29 from "./assets/29.jpg";
+import i30 from "./assets/30.jpg";
+import i31 from "./assets/31.jpg";
+import i32 from "./assets/32.jpg";
+import i33 from "./assets/33.jpg";
+import i34 from "./assets/34.jpg";
+import i35 from "./assets/35.jpg";
+import i36 from "./assets/36.jpg";
+import i37 from "./assets/37.jpg";
+import i38 from "./assets/38.jpg";
+import i39 from "./assets/39.jpg";
+import i40 from "./assets/40.jpg";
+import i41 from "./assets/41.jpg";
+import i42 from "./assets/42.jpg";
+import i43 from "./assets/43.jpg";
+import i44 from "./assets/44.jpg";
+import i45 from "./assets/45.jpg";
+import i46 from "./assets/46.jpg";
+import i47 from "./assets/47.jpg";
+import i48 from "./assets/48.jpg";
+import i49 from "./assets/49.jpg";
+import i50 from "./assets/50.jpg";
+import i51 from "./assets/51.jpg";
+//import i51 from "./assets/51.jpg";
+import i52 from "./assets/52.jpg";
+
+import i53 from "./assets/53.jpg";
+
+import i54 from "./assets/54.jpg";
+import i55 from "./assets/55.jpg";
+
+import i56 from "./assets/56.jpg";
+
 import p from "../public/Muhammad_Sameer_Abbasi.pdf";
+function MemoryViewer({ images, onClose }) {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [progress, setProgress] = useState(0);
+  const intervalRef = useRef(null);
+  const progressRef = useRef(null);
+
+  useEffect(() => {
+    startAnimation();
+    return () => clearTimers();
+  }, [currentIndex]);
+
+  const startAnimation = () => {
+    setProgress(0);
+    progressRef.current = setInterval(() => {
+      setProgress((prev) => (prev >= 100 ? 100 : prev + 2));
+    }, 60);
+    intervalRef.current = setTimeout(() => goToNext(), 3000);
+  };
+
+  const goToNext = () => {
+    clearTimers();
+    setCurrentIndex((prev) => (prev < images.length - 1 ? prev + 1 : 0));
+  };
+
+  const goToPrevious = () => {
+    clearTimers();
+    setCurrentIndex((prev) => (prev > 0 ? prev - 1 : images.length - 1));
+  };
+
+  const clearTimers = () => {
+    clearTimeout(intervalRef.current);
+    clearInterval(progressRef.current);
+  };
+
+  const handleTap = (e) => {
+    const clickX = e.clientX;
+    const screenWidth = window.innerWidth;
+    clearTimers();
+    if (clickX > screenWidth / 2) goToNext();
+    else goToPrevious();
+  };
+
+  return (
+    <div
+      className="fixed inset-0 bg-black z-[200] flex items-center justify-center"
+      onClick={handleTap}
+    >
+      {/* Image */}
+      <img
+        src={images[currentIndex]}
+        className="w-full h-full object-contain"
+        alt=""
+      />
+
+      {/* Progress Bars */}
+      <div className="absolute top-5 left-0 w-full flex gap-1 px-3">
+        {images.map((_, index) => (
+          <div
+            key={index}
+            className="flex-1 h-[3px] bg-white/30 rounded overflow-hidden"
+          >
+            {index === currentIndex && (
+              <div
+                className="h-full bg-white transition-none"
+                style={{ width: `${progress}%` }}
+              />
+            )}
+            {index < currentIndex && <div className="h-full bg-white w-full" />}
+          </div>
+        ))}
+      </div>
+
+      {/* Counter */}
+      <div className="absolute top-10 right-4 text-white/70 text-sm font-medium">
+        {currentIndex + 1} / {images.length}
+      </div>
+
+      {/* Close Button */}
+      <button
+        onClick={(e) => {
+          e.stopPropagation();
+          onClose();
+        }}
+        className="absolute top-5 right-16 text-white text-2xl font-bold z-10 bg-black/40 rounded-full w-9 h-9 flex items-center justify-center"
+      >
+        ✕
+      </button>
+
+      {/* Left/Right hint arrows */}
+      <div className="absolute left-4 top-1/2 -translate-y-1/2 text-white/30 text-3xl pointer-events-none">
+        ‹
+      </div>
+      <div className="absolute right-4 top-1/2 -translate-y-1/2 text-white/30 text-3xl pointer-events-none">
+        ›
+      </div>
+    </div>
+  );
+}
 export default function App() {
   const [selectedProject, setSelectedProject] = useState(null);
   const [typedText, setTypedText] = useState("");
+
+  const [slideshowImages, setSlideshowImages] = useState(null); //
 
   const fullText =
     "Software Engineer | Full Stack Developer | React Native | Mobile | Python | ASP.NET | FastAPI ";
@@ -83,6 +225,72 @@ export default function App() {
         "Comprehensive search functionality leveraging metadata and AI tags for instant photo retrieval",
       ],
     },
+    {
+      title: "GARBAGE COLLECTION SYSTEM",
+      short: "Multi-role Ecosystem",
+      image: heroImg,
+      images: [
+        i20,
+        i21,
+        i22,
+        i23,
+        i24,
+        i25,
+        i26,
+        i27,
+        i28,
+        i29,
+        i30,
+        i31,
+        i32,
+        i33,
+        i34,
+        i35,
+        i36,
+        i38,
+
+        i39,
+        i40,
+        i41,
+        i42,
+        i43,
+        i44,
+        i45,
+        i46,
+        i47,
+        i48,
+        i49,
+        i50,
+        i51,
+        i52,
+        i53,
+        i54,
+        i55,
+        i56,
+      ],
+      stack: [
+        "Full Stack Development",
+        "RESTAPI",
+        "GOOGLE MAPS",
+        "React Native",
+
+        "NODE JS",
+        "SQL",
+      ],
+      details: [
+        [
+          "Multi-role Ecosystem architecture connecting Users, Drivers, Collectors, and Companies in a unified platform",
+          "Scalable Backend development using Node.js with RESTful APIs for seamless cross-role communication",
+          "Cross-platform Mobile application built with React Native for high-performance user experience",
+          "Role-based Authentication system to ensure secure and distinct access for different platform stakeholders",
+          "Smart Bag generation and tracking system for end-to-end asset monitoring and management",
+          "Location-based services integration utilizing Geo-tagging for precise real-time tracking and logistics",
+          "Real-time Data Handling architecture to synchronize workflows between users, drivers, and corporate entities",
+          "Clean, responsive UI/UX design focused on operational efficiency across multiple user personas",
+        ],
+      ],
+    },
+
     {
       title: "CASH AND CARY INVENTORY SYSTEM",
       short: "Java-based retail system",
@@ -193,7 +401,7 @@ export default function App() {
             </div>
             <div className="flex flex-wrap gap-5 justify-center lg:justify-start">
               <a
-                href="/Muhammad_Sameer_Abbasi.pdf" // Path to your PDF
+                href={p} // Path to your PDF
                 download="Muhammad_Sameer_Abbasi_CV.pdf" // Name when downloading
                 className="px-10 py-4 bg-gradient-to-r from-[#38bdf8] to-[#818cf8] hover:from-[#22d3ee] hover:to-[#a78bfa]
                text-black font-bold text-lg rounded-2xl transition-all duration-300 
@@ -465,6 +673,7 @@ export default function App() {
                 <h3 className="text-2xl font-semibold text-cyan-400 mb-3">
                   {project.title}
                 </h3>
+
                 <div className="flex flex-wrap gap-2 mb-4">
                   {project.stack.map((tech, idx) => (
                     <span
@@ -497,27 +706,28 @@ export default function App() {
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.92, opacity: 0 }}
               onClick={(e) => e.stopPropagation()}
-              className="bg-[#0a0a0a] w-full max-w-7xl h-[85vh] rounded-3xl border border-white/10 overflow-hidden flex flex-col md:flex-row shadow-2xl"
+              className="bg-[#0a0a0a] w-full max-w-7xl h-[90vh] rounded-3xl border border-white/10 overflow-hidden flex flex-col md:flex-row shadow-2xl"
             >
               {/* Left - Gallery */}
-              <div className="flex-1 bg-[#050505] p-8 overflow-y-auto border-r border-white/10">
+              <div className="flex-1 bg-[#050505] p-4 md:p-8 overflow-y-auto border-r border-white/5 md:border-white/10 h-[50vh] md:h-full">
                 <h3 className="text-cyan-400 uppercase tracking-widest text-sm mb-6">
                   Project Screenshots
                 </h3>
-                <div className="flex flex-wrap gap-6 justify-center">
+                <div className="flex flex-wrap gap-3 md:gap-6 justify-center">
                   {selectedProject.images?.map((img, idx) => (
                     <img
                       key={idx}
                       src={img}
+                      loading="lazy"
                       alt=""
-                      className="w-full max-w-[45%] rounded-2xl border border-white/10 hover:border-cyan-400 transition-colors cursor-zoom-in"
+                      className="w-full max-w-[47%] md:max-w-[45%] rounded-xl md:rounded-2xl border border-white/10 hover:border-cyan-400 transition-colors cursor-zoom-in"
                     />
                   ))}
                 </div>
               </div>
 
               {/* Right - Details */}
-              <div className="md:w-2/5 p-10 md:p-14 flex flex-col overflow-y-auto">
+              <div className="md:w-2/5 p-6 md:p-14 flex flex-col overflow-y-auto h-[50vh] md:h-full">
                 <button
                   onClick={() => setSelectedProject(null)}
                   className="absolute top-6 right-6 text-3xl text-white/70 hover:text-white"
@@ -528,6 +738,14 @@ export default function App() {
                 <h2 className="text-4xl font-bold bg-gradient-to-r from-white to-cyan-300 bg-clip-text text-transparent">
                   {selectedProject.title}
                 </h2>
+                {selectedProject.images?.length > 0 && (
+                  <button
+                    onClick={() => setSlideshowImages(selectedProject.images)}
+                    className="mt-5 px-6 py-3 bg-gradient-to-r from-cyan-500 to-purple-500 text-black font-bold rounded-2xl text-sm hover:scale-105 transition-all shadow-lg shadow-cyan-500/30"
+                  >
+                    ▶ View Slideshow
+                  </button>
+                )}
 
                 <div className="mt-10">
                   <p className="uppercase text-cyan-400 text-xs tracking-widest mb-4">
@@ -563,7 +781,13 @@ export default function App() {
           </div>
         )}
       </AnimatePresence>
-
+      {/* Slideshow */}
+      {slideshowImages && (
+        <MemoryViewer
+          images={slideshowImages}
+          onClose={() => setSlideshowImages(null)}
+        />
+      )}
       {/* Contact */}
       <section id="contact" className="py-32 px-8">
         <div className="max-w-3xl mx-auto bg-white/5 border border-cyan-400/20 rounded-3xl p-16 text-center backdrop-blur-xl">
